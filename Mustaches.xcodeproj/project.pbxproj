@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		651D57862B3A4B7F0095C58C /* mustache2.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 651D57852B3A4B7F0095C58C /* mustache2.rcproject */; };
+		651D57882B3A4C000095C58C /* Mustache3.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 651D57872B3A4C000095C58C /* Mustache3.rcproject */; };
 		658BCAE92B3A2E5100517432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658BCAE82B3A2E5100517432 /* AppDelegate.swift */; };
 		658BCAEB2B3A2E5100517432 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658BCAEA2B3A2E5100517432 /* ContentView.swift */; };
-		658BCAED2B3A2E5100517432 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 658BCAEC2B3A2E5100517432 /* Experience.rcproject */; };
 		658BCAEF2B3A2E5500517432 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 658BCAEE2B3A2E5500517432 /* Assets.xcassets */; };
 		658BCAF22B3A2E5500517432 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 658BCAF12B3A2E5500517432 /* Preview Assets.xcassets */; };
 		658BCAFC2B3A2E5500517432 /* MustachesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658BCAFB2B3A2E5500517432 /* MustachesTests.swift */; };
 		658BCB062B3A2E5500517432 /* MustachesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658BCB052B3A2E5500517432 /* MustachesUITests.swift */; };
 		658BCB082B3A2E5500517432 /* MustachesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658BCB072B3A2E5500517432 /* MustachesUITestsLaunchTests.swift */; };
+		658BCB152B3A472E00517432 /* mustache1.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 658BCB142B3A472E00517432 /* mustache1.rcproject */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		651D57852B3A4B7F0095C58C /* mustache2.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; name = mustache2.rcproject; path = "../../../Library/Mobile Documents/iCloud~com~apple~RealityComposer/Documents/mustache2.rcproject"; sourceTree = "<group>"; };
+		651D57872B3A4C000095C58C /* Mustache3.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; name = Mustache3.rcproject; path = "../../../Library/Mobile Documents/iCloud~com~apple~RealityComposer/Documents/Mustache3.rcproject"; sourceTree = "<group>"; };
 		658BCAE52B3A2E5100517432 /* Mustaches.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mustaches.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		658BCAE82B3A2E5100517432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		658BCAEA2B3A2E5100517432 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		658BCAEC2B3A2E5100517432 /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
 		658BCAEE2B3A2E5500517432 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		658BCAF12B3A2E5500517432 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		658BCAF72B3A2E5500517432 /* MustachesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MustachesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +49,7 @@
 		658BCB012B3A2E5500517432 /* MustachesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MustachesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		658BCB052B3A2E5500517432 /* MustachesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MustachesUITests.swift; sourceTree = "<group>"; };
 		658BCB072B3A2E5500517432 /* MustachesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MustachesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		658BCB142B3A472E00517432 /* mustache1.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; name = mustache1.rcproject; path = ../../mustache1.rcproject; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +102,9 @@
 			children = (
 				658BCAE82B3A2E5100517432 /* AppDelegate.swift */,
 				658BCAEA2B3A2E5100517432 /* ContentView.swift */,
-				658BCAEC2B3A2E5100517432 /* Experience.rcproject */,
+				658BCB142B3A472E00517432 /* mustache1.rcproject */,
+				651D57852B3A4B7F0095C58C /* mustache2.rcproject */,
+				651D57872B3A4C000095C58C /* Mustache3.rcproject */,
 				658BCAEE2B3A2E5500517432 /* Assets.xcassets */,
 				658BCAF02B3A2E5500517432 /* Preview Content */,
 			);
@@ -260,9 +266,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				651D57882B3A4C000095C58C /* Mustache3.rcproject in Sources */,
 				658BCAEB2B3A2E5100517432 /* ContentView.swift in Sources */,
+				651D57862B3A4B7F0095C58C /* mustache2.rcproject in Sources */,
 				658BCAE92B3A2E5100517432 /* AppDelegate.swift in Sources */,
-				658BCAED2B3A2E5100517432 /* Experience.rcproject in Sources */,
+				658BCB152B3A472E00517432 /* mustache1.rcproject in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
