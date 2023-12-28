@@ -104,19 +104,14 @@ struct ContentView : View {
         }
     }
 
-    func documentDirectoryURL() -> URL? {
-        let fileManager = FileManager.default
-        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        return urls.first
-    }
-
     func tempURL() -> URL? {
-        if let directory = documentDirectoryURL() {
-            let path = directory.appendingPathComponent(NSUUID().uuidString + ".mp4")
-            return path
-        }
-        return nil
-    }
+                let directory = NSTemporaryDirectory() as NSString
+                if directory != "" {
+                    let path = directory.appendingPathComponent(NSUUID().uuidString + ".mp4")
+                    return URL(fileURLWithPath: path)
+                }
+                return nil
+            }
 
 }
 
