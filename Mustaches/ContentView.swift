@@ -32,13 +32,17 @@ struct ContentView : View {
             VStack {
                 ARViewContainer(selectedMustache: $selectedMustache)
                     .edgesIgnoringSafeArea(.all)
-
-                Picker("Select Mustache", selection: $selectedMustache) {
-                    Text("Mustache 1").tag(1)
-                    Text("Mustache 2").tag(2)
-                    Text("Mustache 3").tag(3)
-                }.pickerStyle(SegmentedPickerStyle())
-
+                if !isRecording {
+                    Picker("Select Mustache", selection: $selectedMustache) {
+                        Text("Mustache 1").tag(1)
+                        Text("Mustache 2").tag(2)
+                        Text("Mustache 3").tag(3)
+                    }.pickerStyle(SegmentedPickerStyle())
+                    
+                    NavigationLink(destination: RecordingsListView()) {
+                                Text("View Recordings")
+                    }
+                }
                 Button(isRecording ? "Stop Recording" : "Start Recording") {
                     if isRecording {
                         stopRecording()
@@ -47,39 +51,27 @@ struct ContentView : View {
                     }
                 }.padding()
 
-                if showTagInputView {
+                if showTagInputView && !isRecording {
                         TagInputView(isPresented: $showTagInputView, tagText: $tagText) {
-                            // Add a print statement before saving
-                            print("Saving recording to database with videoPath: \(recordedVideoURL?.path ?? "unknown"), duration: \(recordedVideoDuration), tag: \(tagText)")
-
-                            // Save the recording information to the database
-                            if let videoPath = recordedVideoURL?.path {
-                                self.isVideoPreviewPresented = true  // Now show the video preview
-
-                            }
+                                self.isVideoPreviewPresented = true
+                            
                         }
                     }
-                
-                    NavigationLink(destination: RecordingsListView()) {
-                                    Text("View Recordings")
-                        }
+            
                 }
             .sheet(isPresented: $isVideoPreviewPresented) {
                 if let videoURL = recordedVideoURL {
                     VideoPreviewView(videoURL: videoURL, isPresented: $isVideoPreviewPresented, onSave: {
-                        // This is called when the user confirms after watching the preview
                         self.isVideoPreviewPresented = false
-                        self.showTagInputView = false  // Also hide the tag input view
-                        // Additional logic if required when saving
+                        self.showTagInputView = false
                         if let videoPath = recordedVideoURL?.path {
                             DatabaseManager.shared.saveRecording(videoPath: videoPath, duration: Int(recordedVideoDuration), tagText: tagText)
 
                         }
                         
                     }, onCancel: {
-                        // Handle cancellation
                         self.isVideoPreviewPresented = false
-                        self.showTagInputView = false  // Also hide the tag input view
+                        self.showTagInputView = false
                     })
                 } else {
                     Text("No video selected")
@@ -109,7 +101,7 @@ struct ContentView : View {
         }
 
         let recorder = RPScreenRecorder.shared()
-        recordedVideoURL = tempURL // Set the temporary URL
+        recordedVideoURL = tempURL
 
         if let unwrappedURL = recordedVideoURL {
             recorder.stopRecording(withOutput: unwrappedURL) { error in
@@ -119,7 +111,7 @@ struct ContentView : View {
                         print("Failed to save: \(error.localizedDescription)")
                     } else {
                         print("Recorded video URL: \(unwrappedURL)")
-                        self.showTagInputView = true  // Show tag input view first
+                        self.showTagInputView = true
                     }
                 }
             }
