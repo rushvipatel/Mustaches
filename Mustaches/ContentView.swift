@@ -24,6 +24,7 @@ struct ContentView : View {
     @State private var recordedVideoURL: URL?
     @State private var recordedVideoDuration: TimeInterval = 0
     @State private var isVideoPreviewPresented = false
+    @State private var recordingStartTime: Date?
 
     let previewDelegate = PreviewDelegate()
 
@@ -90,12 +91,14 @@ struct ContentView : View {
                 print("Recording failed to start: \(error.localizedDescription)")
             } else {
                 isRecording = true
+                recordingStartTime = Date()
+
             }
         }
     }
 
     func stopRecording() {
-        guard let tempURL = tempURL() else {
+        guard let tempURL = tempURL(), let start = recordingStartTime else {
             print("Failed to create temp URL")
             return
         }
@@ -112,6 +115,9 @@ struct ContentView : View {
                     } else {
                         print("Recorded video URL: \(unwrappedURL)")
                         self.showTagInputView = true
+                        let endTime = Date()
+                        self.recordedVideoDuration = endTime.timeIntervalSince(start)
+
                     }
                 }
             }
