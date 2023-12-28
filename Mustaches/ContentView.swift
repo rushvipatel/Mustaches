@@ -8,6 +8,7 @@ import SwiftUI
 import RealityKit
 import ARKit
 import ReplayKit
+import AVKit
 
 class PreviewDelegate: NSObject, RPPreviewViewControllerDelegate {
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
@@ -22,6 +23,7 @@ struct ContentView : View {
     @State private var tagText = ""
     @State private var recordedVideoURL: URL?
     @State private var recordedVideoDuration: TimeInterval = 0
+    @State private var isVideoPreviewPresented = false
 
     let previewDelegate = PreviewDelegate()
 
@@ -52,7 +54,8 @@ struct ContentView : View {
 
                             // Save the recording information to the database
                             if let videoPath = recordedVideoURL?.path {
-                                DatabaseManager.shared.saveRecording(videoPath: videoPath, duration: Int(recordedVideoDuration), tagText: tagText)
+                                self.isVideoPreviewPresented = true  // Now show the video preview
+
                             }
                         }
                     }
@@ -61,6 +64,30 @@ struct ContentView : View {
                                     Text("View Recordings")
                         }
                 }
+            .sheet(isPresented: $isVideoPreviewPresented) {
+                if let videoURL = recordedVideoURL {
+                    VideoPreviewView(videoURL: videoURL, isPresented: $isVideoPreviewPresented, onSave: {
+                        // This is called when the user confirms after watching the preview
+                        self.isVideoPreviewPresented = false
+                        self.showTagInputView = false  // Also hide the tag input view
+                        // Additional logic if required when saving
+                        if let videoPath = recordedVideoURL?.path {
+                            DatabaseManager.shared.saveRecording(videoPath: videoPath, duration: Int(recordedVideoDuration), tagText: tagText)
+
+                        }
+                        
+                    }, onCancel: {
+                        // Handle cancellation
+                        self.isVideoPreviewPresented = false
+                        self.showTagInputView = false  // Also hide the tag input view
+                    })
+                } else {
+                    Text("No video selected")
+                }
+            }
+
+
+
             }
         }
             
@@ -84,7 +111,6 @@ struct ContentView : View {
         let recorder = RPScreenRecorder.shared()
         recordedVideoURL = tempURL // Set the temporary URL
 
-        // Ensure recordedVideoURL has a value before proceeding
         if let unwrappedURL = recordedVideoURL {
             recorder.stopRecording(withOutput: unwrappedURL) { error in
                 DispatchQueue.main.async {
@@ -93,16 +119,15 @@ struct ContentView : View {
                         print("Failed to save: \(error.localizedDescription)")
                     } else {
                         print("Recorded video URL: \(unwrappedURL)")
-                        // Handle what to do after recording stops
-                        self.showTagInputView = true
+                        self.showTagInputView = true  // Show tag input view first
                     }
                 }
             }
         } else {
             print("Error: Recorded video URL is nil")
-            // Handle the error case appropriately
         }
     }
+
 
     func tempURL() -> URL? {
                 let directory = NSTemporaryDirectory() as NSString
@@ -113,6 +138,28 @@ struct ContentView : View {
                 return nil
             }
 
+}
+struct VideoPreviewView: View {
+    var videoURL: URL
+    @Binding var isPresented: Bool
+    var onSave: () -> Void
+    var onCancel: () -> Void
+
+    var body: some View {
+        VStack {
+            VideoPlayer(player: AVPlayer(url: videoURL))
+                .frame(height: 300)
+
+            HStack {
+                Button("Cancel") {
+                    onCancel()
+                }
+                Button("Save") {
+                    onSave()
+                }
+            }
+        }
+    }
 }
 
 struct TagInputView: View {
