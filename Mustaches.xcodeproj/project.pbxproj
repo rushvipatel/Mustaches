@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		651D57862B3A4B7F0095C58C /* mustache2.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 651D57852B3A4B7F0095C58C /* mustache2.rcproject */; };
 		651D57882B3A4C000095C58C /* Mustache3.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 651D57872B3A4C000095C58C /* Mustache3.rcproject */; };
+		651D57942B3CDF970095C58C /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 651D57932B3CDF970095C58C /* SQLite */; };
+		651D57962B3CDFA80095C58C /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651D57952B3CDFA80095C58C /* DatabaseManager.swift */; };
+		651D57982B3CFA0E0095C58C /* RecordingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651D57972B3CFA0E0095C58C /* RecordingsList.swift */; };
 		658BCAE92B3A2E5100517432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658BCAE82B3A2E5100517432 /* AppDelegate.swift */; };
 		658BCAEB2B3A2E5100517432 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658BCAEA2B3A2E5100517432 /* ContentView.swift */; };
 		658BCAEF2B3A2E5500517432 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 658BCAEE2B3A2E5500517432 /* Assets.xcassets */; };
@@ -39,6 +42,8 @@
 /* Begin PBXFileReference section */
 		651D57852B3A4B7F0095C58C /* mustache2.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; name = mustache2.rcproject; path = "../../../Library/Mobile Documents/iCloud~com~apple~RealityComposer/Documents/mustache2.rcproject"; sourceTree = "<group>"; };
 		651D57872B3A4C000095C58C /* Mustache3.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; name = Mustache3.rcproject; path = "../../../Library/Mobile Documents/iCloud~com~apple~RealityComposer/Documents/Mustache3.rcproject"; sourceTree = "<group>"; };
+		651D57952B3CDFA80095C58C /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		651D57972B3CFA0E0095C58C /* RecordingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsList.swift; sourceTree = "<group>"; };
 		658BCAE52B3A2E5100517432 /* Mustaches.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mustaches.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		658BCAE82B3A2E5100517432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		658BCAEA2B3A2E5100517432 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				651D57942B3CDF970095C58C /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +108,8 @@
 			children = (
 				658BCAE82B3A2E5100517432 /* AppDelegate.swift */,
 				658BCAEA2B3A2E5100517432 /* ContentView.swift */,
+				651D57952B3CDFA80095C58C /* DatabaseManager.swift */,
+				651D57972B3CFA0E0095C58C /* RecordingsList.swift */,
 				658BCB142B3A472E00517432 /* mustache1.rcproject */,
 				651D57852B3A4B7F0095C58C /* mustache2.rcproject */,
 				651D57872B3A4C000095C58C /* Mustache3.rcproject */,
@@ -152,6 +160,9 @@
 			dependencies = (
 			);
 			name = Mustaches;
+			packageProductDependencies = (
+				651D57932B3CDF970095C58C /* SQLite */,
+			);
 			productName = Mustaches;
 			productReference = 658BCAE52B3A2E5100517432 /* Mustaches.app */;
 			productType = "com.apple.product-type.application";
@@ -224,6 +235,9 @@
 				Base,
 			);
 			mainGroup = 658BCADC2B3A2E5100517432;
+			packageReferences = (
+				651D57922B3CDF970095C58C /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+			);
 			productRefGroup = 658BCAE62B3A2E5100517432 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -266,8 +280,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				651D57982B3CFA0E0095C58C /* RecordingsList.swift in Sources */,
 				651D57882B3A4C000095C58C /* Mustache3.rcproject in Sources */,
 				658BCAEB2B3A2E5100517432 /* ContentView.swift in Sources */,
+				651D57962B3CDFA80095C58C /* DatabaseManager.swift in Sources */,
 				651D57862B3A4B7F0095C58C /* mustache2.rcproject in Sources */,
 				658BCAE92B3A2E5100517432 /* AppDelegate.swift in Sources */,
 				658BCB152B3A472E00517432 /* mustache1.rcproject in Sources */,
@@ -599,6 +615,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		651D57922B3CDF970095C58C /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.14.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		651D57932B3CDF970095C58C /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 651D57922B3CDF970095C58C /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 658BCADD2B3A2E5100517432 /* Project object */;
 }
