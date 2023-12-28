@@ -15,28 +15,38 @@ struct RecordingsListView: View {
     @State private var isVideoPlayerPresented = false
 
     var body: some View {
-        List(recordings, id: \.id) { recording in
-            Button(action: {
-                selectedVideoURL = URL(fileURLWithPath: recording.videoFilePath)
-                isVideoPlayerPresented = true
-            }) {
-                VStack(alignment: .leading) {
-                    Text(recording.tag)
-                    Text("Duration: \(recording.duration) seconds").font(.subheadline).foregroundColor(.gray)
+        NavigationView {
+            List(recordings, id: \.id) { recording in
+                Button(action: {
+                    selectedVideoURL = URL(fileURLWithPath: recording.videoFilePath)
+                    isVideoPlayerPresented = true
+                }) {
+                    VStack(alignment: .leading) {
+                        Text(recording.tag)
+                        Text("Duration: \(recording.duration) seconds").font(.subheadline).foregroundColor(.gray)
+                    }
+                }
+            }
+            .navigationBarItems(trailing: Button("Clear All") {
+                            clearAllRecordings()
+                        })
+            .onAppear(perform: loadRecordings)
+            .sheet(isPresented: $isVideoPlayerPresented) {
+                if let videoURL = selectedVideoURL {
+                    VideoPlayerView(videoURL: videoURL)
+
                 }
             }
         }
-        .onAppear(perform: loadRecordings)
-        .sheet(isPresented: $isVideoPlayerPresented) {
-            if let videoURL = selectedVideoURL {
-                VideoPlayerView(videoURL: videoURL)
-
-            }
-        }
+        
     }
 
     private func loadRecordings() {
         recordings = DatabaseManager.shared.getRecordings()
+    }
+    private func clearAllRecordings() {
+        DatabaseManager.shared.deleteAllRecordings()
+        recordings.removeAll()
     }
 }
 struct VideoPlayerView: UIViewControllerRepresentable {

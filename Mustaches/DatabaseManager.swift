@@ -64,6 +64,15 @@ class DatabaseManager {
         }
         return recordingList
     }
+    func deleteAllRecordings() {
+        let deleteStatement = recordings.delete()
+        do {
+            try db.run(deleteStatement)
+            print("All recordings deleted.")
+        } catch {
+            print("Delete failed: \(error)")
+        }
+    }
 }
 
 struct Recording {
