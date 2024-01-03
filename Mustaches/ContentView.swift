@@ -9,6 +9,7 @@ import RealityKit
 import ARKit
 import ReplayKit
 import AVKit
+import AVFoundation
 
 class PreviewDelegate: NSObject, RPPreviewViewControllerDelegate {
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
@@ -83,7 +84,9 @@ struct ContentView : View {
 
             }
         }
-            
+    
+
+    
     func startRecording() {
         let recorder = RPScreenRecorder.shared()
         recorder.startRecording { error in
